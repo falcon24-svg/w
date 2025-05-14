@@ -1,0 +1,64 @@
+ <!DOCTYPE html>
+<html>
+<head>  
+    <meta charset="UTF-8" />
+    <title>Viscnity</title>
+    <link rel="stylesheet" href="css.style.css" />
+</head>
+<body>
+    <!--Header-->   
+    <header>
+        <div class="logo">Viscnity</div>
+        <div class="banner">Deal is paternership</div>
+        </header>
+        <!--Navigation bar--> 
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a> </li>
+                <li><a href="#">Our services</a> </li>
+                <li><a href="#">Contact us</a></li> 
+                </ul>
+        </nav>
+        <div class="container">
+            <div class="content">
+                <!--left main content-->
+                <h2>Welcome to viscnity</h2>
+                <div class="row">
+                    <div class="column">
+                      <img src="fashion and design (4).webp" alt="fashion and design" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="janitor (1).png" alt="janitor" style="width:100%">
+                    </div>
+                    <div class="column">
+                      <img src="deliver (2).png" alt="deliver" style="width:100%">
+                    </div>
+                  </div>
+            
+            
+            
+            </div>
+                <footer>
+                    &copy;.2025 viscnity. All rights reserved.
+                </footer>
+                    <script>
+                        let currentIndex = 0;
+                        const slides = document.querySelectorAll('.slide');
+                        function showSlide(index){ 
+                            slides.forEach((slide, i) => {
+                                slide.classlist.remove("active");
+                            if(i==index){
+                                slide.classList.add("active");
+                        }
+                    });
+                }
+                    
+                        function nextslide(){
+                            currentIndex=(currentindex+1)% slides.length;
+                            showslide(correntindex);
+                        }
+                        setinterval(nextslide,3000);//changeslide every3seconds
+                    </script>
+</body>
+</html>
