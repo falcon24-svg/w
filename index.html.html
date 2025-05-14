@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Viscnity</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: black;
+            color: white;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .banner {
+            font-size: 1.1rem;
+            color: #ddd;
+            font-style: italic;
+        }
+
+        nav {
+            background-color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0;
+        }
+
+        nav ul li a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #575757;
+            color: #ffd700;
+        }
+
+        .container {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: white;
+            overflow: hidden;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            padding: 1.2rem 1rem;
+            font-size: 1rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+            gap: 1.2rem;
+            background: #f8f8f8;
+            border-top: 1px solid #eee;
+            min-height: 60px;
+        }
+
+        .image-caption span {
+            flex: 1;
+            text-align: left;
+            font-weight: 500;
+            font-size: 1.08rem;
+        }
+
+        .get-started-inline-btn {
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(90deg, #0078d7 70%, #0056b3 100%);
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 1rem;
+            box-shadow: 0 2px 8px rgba(0,120,215,0.10);
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .get-started-inline-btn:hover {
+            background: linear-gradient(90deg, #0056b3 60%, #0078d7 100%);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 16px rgba(0,120,215,0.18);
+        }
+
+        .book-job-btn {
+            padding: 0.4rem 1.2rem;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .book-job-btn:hover {
+            background: #218838;
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background-color: #222;
+            color: white;
+            margin-top: 2rem;
+            border-top: 1px solid #444;
+        }
+
+        .form-container {
+            max-width: 450px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: bold;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0078d7;
+            box-shadow: 0 0 5px rgba(0, 120, 215, 0.3);
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #575757;
+            transform: translateY(-2px);
+        }
+
+        .form-group .error-message {
+            color: #ff4d4d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .form-switch a {
+            color: #0078d7;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .form-switch a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        #about-us, #our-services {
+            text-align: left;
+            padding: 2rem;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            line-height: 1.7;
+        }
+
+        #about-us h2, #our-services h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #about-us p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        #our-services ul {
+            list-style: none;
+            padding-left: 0;
+            margin-left: 0;
+            margin-bottom: 2rem;
+        }
+
+        #our-services ul li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        #our-services ul li:last-child {
+            border-bottom: none;
+        }
+
+        #our-services ul li::before {
+            content: "✓";
+            color: #0078d7;
+            margin-right: 1rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        #get-started-btn {
+            display: flex;
+            text-align: center;
+            width: 180px;
+        }
+
+        @media (max-width: 1200px) {
+            .image-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 1000px) {
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .image-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+
+            .form-container {
+                width: 90%;
+                margin: 2rem auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .image-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            #about-us, #our-services {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-switch {
+                flex-direction: column;
+            }
+
+            .form-switch a {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .button-loading {
+            pointer-events: none;
+            opacity: 0.7;
+            position: relative;
+        }
+        .button-loading::after {
+            content: "";
+            border: 2px solid #fff;
+            border-top: 2px solid #0078d7;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: translateY(-50%) rotate(0deg);}
+            100% { transform: translateY(-50%) rotate(360deg);}
+        }
+
+        .image-container.selected {
+            border: 2px solid #0078d7;
+            box-shadow: 0 0 0 3px #0078d733;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Viscnity</div>
+        <div class="banner">Deal is partnership</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#our-services">Our Services</a></li>
+            
+            <li><a href="#" id="login-link">Login</a></li>
+            <li><a href="#" id="register-link">Register</a></li>
+        </ul>
+    </nav>
+
+    <div class="container" id="main-content">
+        <h2>Welcome to Viscnity</h2>
+        <div id="success-message" style="display:none; margin-bottom:1.5rem; color: #28a745; font-weight:600; font-size:1.1rem;"></div>
+        <div class="image-grid">
+            <div class="image-container">
+                <img src="deliver (1).png" alt="Delivery Service 1">
+                <div class="image-caption">
+                    <span>Fast Delivery</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                    <button class="book-job-btn" style="display:none;">Book Job</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="deliver (2).png" alt="Delivery Service 2">
+                <div class="image-caption">
+                    <span>Reliable Shipping</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="deliver (3).png" alt="Delivery Service 3">
+                <div class="image-caption">
+                    <span>On-Time Arrival</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (1).jpg" alt="Caregiver Service 1">
+                <div class="image-caption">
+                    <span>Compassionate Care</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (1).png" alt="Caregiver Service 2">
+                <div class="image-caption">
+                    <span>Experienced Staff</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (5).jpg" alt="Caregiver Service 7">
+                <div class="image-caption">
+                    <span>Caring Approach</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (6).jpg" alt="Caregiver Service 8">
+                <div class="image-caption">
+                    <span>Gentle Assistance</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (7).jpg" alt="Caregiver Service 9">
+                <div class="image-caption">
+                    <span>Professional Help</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="care giver (8).jpg" alt="Caregiver Service 10">
+                <div class="image-caption">
+                    <span>Kind Support</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="barista (1).png" alt="Barista Service 1">
+                <div class="image-caption">
+                    <span>Expert Coffee</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="barista (2).png" alt="Barista Service 2">
+                <div class="image-caption">
+                    <span>Delicious Brews</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="barista (3).png" alt="Barista Service 3">
+                <div class="image-caption">
+                    <span>Crafted Drinks</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="fashion and design (1).jpg" alt="Fashion Design 1">
+                <div class="image-caption">
+                    <span>Stylish Designs</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="fashion and design (1).png" alt="Fashion Design 2">
+                <div class="image-caption">
+                    <span>Modern Fashion</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="fashion and design (2).jpg" alt="Fashion Design 3">
+                <div class="image-caption">
+                    <span>Creative Styles</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="fashion and design (3).jpg" alt="Fashion Design 4">
+                <div class="image-caption">
+                    <span>Unique Apparel</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="fashion and design (3).png" alt="Fashion Design 5">
+                <div class="image-caption">
+                    <span>Innovative Designs</span>
+                    <button class="get-started-inline-btn">Get Started</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <p>
+                Welcome to Viscnity, your trusted partner in connecting you with a wide range of services to meet your everyday needs. We understand that life can be busy and demanding, and finding reliable service providers can be a challenge. That's where we come in.  Viscnity is dedicated to simplifying your life by providing a platform where you can easily find and connect with qualified professionals in your local area.  We believe in building strong partnerships between service providers and customers, fostering trust and reliability. Our mission is to empower individuals and businesses to thrive by providing seamless access to essential services.
+            </p>
+        </section>
+
+        <section id="our-services">
+            <h2>Our Services</h2>
+            <p>
+                Viscnity offers a diverse range of services to cater to your varied needs.  We carefully select our service providers to ensure they meet our high standards of quality and professionalism.  Here are some of the services you can find on our platform:
+            </p>
+            <ul>
+                <li><strong>Delivery Services:</strong>  Fast and reliable delivery of goods and packages.</li>
+                <li><strong>Caregiving Services:</strong>  Compassionate and personalized care for individuals needing assistance.</li>
+                <li><strong>Barista Services:</strong>  Expertly crafted coffee and beverage services for events or personal enjoyment.</li>
+                <li><strong>Fashion and Design:</strong>  Creative and stylish fashion design services for your unique needs.</li>
+                <li><strong>And many more:</strong> We are continuously expanding our services to serve you better.</li>
+            </ul>
+            <p>
+                We are committed to providing a user-friendly platform that makes it easy for you to find the services you need, when you need them.  Thank you for choosing Viscnity!
+            </p>
+        </section>
+    </div>
+
+    <div class="form-container" id="login-form" style="display: none;">
+        <h2>Login</h2>
+        <form id="login-form-element">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+                <div id="login-email-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                <div id="login-password-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <div class="form-switch">
+            <a href="#" id="switch-to-register">Don't have an account? Register</a>
+        </div>
+        <div style="text-align:center; margin-top:1rem;">
+            <a href="#" id="back-to-home" style="color:#0078d7; text-decoration:underline; font-size:1rem;">Back to Home</a>
+        </div>
+    </div>
+
+    <div class="form-container" id="register-form" style="display: none;">
+        <h2>Register</h2>
+        <form id="register-form-element">
+            <div class="form-group">
+                <label for="register-name">Name</label>
+                <input type="text" id="register-name" name="name" placeholder="Enter your name" required>
+                <div id="register-name-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="register-email">Email</label>
+                <input type="email" id="register-email" name="email" placeholder="Enter your email" required>
+                <div id="register-email-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="register-password">Password</label>
+                <input type="password" id="register-password" name="password" placeholder="Enter your password" required>
+                <div id="register-password-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="register-confirm-password">Confirm Password</label>
+                <input type="password" id="register-confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                <div id="register-confirm-password-error" class="error-message"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <div class="form-switch">
+            <a href="#" id="switch-to-login">Already have an account? Login</a>
+        </div>
+        <div style="text-align:center; margin-top:1rem;">
+            <a href="#" id="back-to-home" style="color:#0078d7; text-decoration:underline; font-size:1rem;">Back to Home</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 Viscnity. All rights reserved.
+    </footer>
+
+    <script>
+        // Navigation and form switching
+        const loginLink = document.getElementById("login-link");
+        const registerLink = document.getElementById("register-link");
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const mainContent = document.getElementById("main-content");
+        const switchToRegisterLink = document.getElementById("switch-to-register");
+        const switchToLoginLink = document.getElementById("switch-to-login");
+
+        loginLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            mainContent.style.display = "none";
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        });
+
+        registerLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            mainContent.style.display = "none";
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        });
+
+        switchToRegisterLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            loginForm.style.display = "none";
+            registerForm.style.display = "block";
+        });
+
+        switchToLoginLink.addEventListener("click", (event) => {
+            event.preventDefault();
+            loginForm.style.display = "block";
+            registerForm.style.display = "none";
+        });
+
+        // Form validation helpers
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        // Login form logic
+        const loginFormElement = document.getElementById("login-form-element");
+        loginFormElement.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const btn = loginFormElement.querySelector("button[type='submit']");
+            btn.classList.add("button-loading");
+            setTimeout(() => {
+                const email = document.getElementById("login-email").value.trim();
+                const password = document.getElementById("login-password").value.trim();
+                let hasErrors = false;
+
+                document.getElementById("login-email-error").textContent = "";
+                document.getElementById("login-password-error").textContent = "";
+
+                if (!email) {
+                    document.getElementById("login-email-error").textContent = "Email is required";
+                    hasErrors = true;
+                } else if (!validateEmail(email)) {
+                    document.getElementById("login-email-error").textContent = "Invalid email format";
+                    hasErrors = true;
+                }
+
+                if (!password) {
+                    document.getElementById("login-password-error").textContent = "Password is required";
+                    hasErrors = true;
+                }
+
+                if (!hasErrors) {
+                    alert(`Logging in with Email: ${email} and Password: ${password}`);
+                    loginFormElement.reset();
+                    loginForm.style.display = "none";
+                    mainContent.style.display = "block";
+                    // Show Book Job buttons, hide Get Started buttons
+                    document.querySelectorAll('.book-job-btn').forEach(btn => btn.style.display = "inline-block");
+                    document.querySelectorAll('.get-started-inline-btn').forEach(btn => btn.style.display = "none");
+                }
+                btn.classList.remove("button-loading");
+            }, 1000); // simulate loading
+        });
+
+        // Register form logic
+        const registerFormElement = document.getElementById("register-form-element");
+        registerFormElement.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById("register-name").value.trim();
+            const email = document.getElementById("register-email").value.trim();
+            const password = document.getElementById("register-password").value.trim();
+            const confirmPassword = document.getElementById("register-confirm-password").value.trim();
+            let hasErrors = false;
+
+            document.getElementById("register-name-error").textContent = "";
+            document.getElementById("register-email-error").textContent = "";
+            document.getElementById("register-password-error").textContent = "";
+            document.getElementById("register-confirm-password-error").textContent = "";
+
+            if (!name) {
+                document.getElementById("register-name-error").textContent = "Name is required";
+                hasErrors = true;
+            }
+
+            if (!email) {
+                document.getElementById("register-email-error").textContent = "Email is required";
+                hasErrors = true;
+            } else if (!validateEmail(email)) {
+                document.getElementById("register-email-error").textContent = "Invalid email format";
+                hasErrors = true;
+            }
+
+            if (!password) {
+                document.getElementById("register-password-error").textContent = "Password is required";
+                hasErrors = true;
+            } else if (password.length < 6) {
+                document.getElementById("register-password-error").textContent = "Password must be at least 6 characters";
+                hasErrors = true;
+            }
+
+            if (!confirmPassword) {
+                document.getElementById("register-confirm-password-error").textContent = "Confirm Password is required";
+                hasErrors = true;
+            } else if (password !== confirmPassword) {
+                document.getElementById("register-confirm-password-error").textContent = "Passwords do not match";
+                hasErrors = true;
+            }
+
+            if (!hasErrors) {
+                alert(`Registering with Name: ${name}, Email: ${email}, and Password: ${password}`);
+                registerFormElement.reset();
+                registerForm.style.display = "none";
+                mainContent.style.display = "block";
+                // After registration, keep Get Started buttons visible, Book Job buttons hidden
+                document.querySelectorAll('.book-job-btn').forEach(btn => btn.style.display = "none");
+                document.querySelectorAll('.get-started-inline-btn').forEach(btn => btn.style.display = "inline-block");
+            }
+        });
+
+        // Get Started button logic
+        document.querySelectorAll('.get-started-inline-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                mainContent.style.display = "none";
+                loginForm.style.display = "none";
+                registerForm.style.display = "block";
+            });
+        });
+
+        // Book Job button logic
+        document.querySelectorAll('.book-job-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm("Are you sure you want to book this job?")) {
+                    alert("Wait for 20 days, you will get a message on your email.");
+                }
+            });
+        });    
+    </script>
+</body>
+</html>
+``` 
